@@ -32,31 +32,35 @@
 
 class Book:
     def __init__(self,title="How ",page_count=9) :
-        self.title=title
-        self.page_count=page_count
+        self._title=title
+        self._page_count=page_count
+        # if not isinstance(page_count,int):
+        #      print(ValueError("Page_count must be an integer"))
+        # else:self.page_count=page_count
 
     @property
-    def get_title(self):
+    def title(self):
         return self._title
     
-    @get_title.setter
-    def get_title(self,title):
+    @title.setter
+    def title(self,title):
       self._title=title
 
     @property   
-    def get_page_count(self):
+    def page_count(self):
         return self._page_count
         
-    @get_page_count.setter
-    def set_page_count(self,page_count):
-        if isinstance(page_count,int):
-            self._page_count=page_count
-        else:raise ValueError("Page_count must be an integer")
+    @page_count.setter
+    def page_count(self,page_count):
+        if not isinstance(page_count,int):
+             print(ValueError("page_count must be an integer"))
+        else:self._page_count=page_count
 
     def turn_page(self):
      print("Flipping the page...wow, you read fast!")
      return "Flipping the page...wow, you read fast!"
     
     #page_count=property(get_page_count)
-Rails=Book("Rails",9)
-print(Rails.turn_page())
+# Rails=Book("And Then There Were None","272")
+# print(Rails.page_count,Rails.title)
+# print(Rails.turn_page())

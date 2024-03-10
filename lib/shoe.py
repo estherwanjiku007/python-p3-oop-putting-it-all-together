@@ -38,8 +38,8 @@
 
 class Shoe:
     def __init__(self,brand="Adidas",size=7) :
-        self.brand=brand
-        self.size=size
+        self._brand=brand
+        self._size=size
         
 
     @property
@@ -52,18 +52,20 @@ class Shoe:
 
     @property 
     def size(self):
-        return self._brand
+        return self._size
     
     @size.setter
     def size(self,size):
-        if isinstance(size,int):
-            self._size=size
+        if not isinstance(size,int):
+            print(ValueError("size must be an integer"))
         else:
-            print("size must be an integer")
+            self._size=size
+            
 
-    def cobble(self):        
+    def cobble(self):   
+        self.condition="New"     
         print("Your shoe is as good as new!")
-        self.condition="New"
+        
 
     #@property
     # def condition(self):
@@ -75,8 +77,8 @@ class Shoe:
     #     self._condition=condition
         
 
-Adidas=Shoe("Puma",10)
-print(Adidas._brand)
+Adidas=Shoe("Puma","tt")
+print(Adidas._size)
 print(Adidas.cobble())
 
 
